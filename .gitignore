@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+venv311/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Generated Data (runtime outputs)
+data/processed/chunks.json
+data/processed/knowledge_graph.pkl
+
+# Logs
+*.log
+mdpdf.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Jupyter Notebooks (if any)
+.ipynb_checkpoints/
+
+# Environment variables
+.env
+.env.local

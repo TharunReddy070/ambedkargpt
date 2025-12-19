@@ -1,0 +1,68 @@
+# SEMRAG Configuration
+
+# Chunking Parameters (Algorithm 1)
+chunking:
+  similarity_threshold: 0.3
+  buffer_size: 2
+  max_tokens: 1024
+  subchunk_tokens: 128
+  overlap_tokens: 20
+
+# Entity Extraction
+entity_extraction:
+  spacy_model: "en_core_web_sm"
+  min_entity_length: 2
+
+# Graph Construction
+graph:
+  entity_similarity_threshold: 0.3
+  max_edges_per_node: 50
+
+# Community Detection
+community_detection:
+  algorithm: "louvain"
+  resolution: 1.0
+
+# Retrieval Parameters
+retrieval:
+  # Local Search (Equation 4)
+  local:
+    tau_e: 0.3
+    tau_d: 0.3
+    top_k: 10
+  
+  # Global Search (Equation 5)
+  global:
+    top_k: 5
+  
+  # Hybrid Ranking
+  hybrid:
+    alpha: 0.6  # Weight for local search (1-alpha for global)
+    final_top_k: 5
+
+# Embeddings
+embeddings:
+  model: "sentence-transformers/all-MiniLM-L6-v2"
+  dimension: 384
+
+# LLM Configuration
+llm:
+  provider: "ollama"
+  model: "llama3.2"
+  temperature: 0.7
+  max_tokens: 500
+  context_window: 4096
+
+# Pipeline
+pipeline:
+  default_mode: "auto"  # Options: local, global, auto
+  save_intermediate: true
+  cache_embeddings: true
+
+# Paths
+paths:
+  data_dir: "data"
+  pdf_file: "data/Ambedkar_works.pdf"
+  processed_dir: "data/processed"
+  chunks_file: "data/processed/chunks.json"
+  graph_file: "data/processed/knowledge_graph.pkl"

@@ -1,6 +1,8 @@
 import argparse
+from llm import ollama_client
 from pypdf import PdfReader
 
+from src.llm.ollama_client import OllamaClient
 from src.pipeline.semrag_pipeline import SemRAGPipeline
 from src.retrieval.local_search import LocalGraphSearch
 from src.retrieval.global_search import GlobalGraphSearch
@@ -48,8 +50,9 @@ def main():
 
     prompt = PromptBuilder().build(args.question, local_ctx, global_ctx)
 
-    llm = lambda p: p  # replace with Ollama or llama.cpp
-    answer = AnswerGenerator(llm).generate(prompt)
+    ollama_client = OllamaClient(model="llama3.2:latest", temperature=0.2)
+    answer = AnswerGenerator(ollama_client).generate(prompt)
+
 
     print(answer)
 
